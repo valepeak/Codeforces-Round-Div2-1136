@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+void solve() {
+    long long x;
+    cin >> x;
+    
+    for (long long n = 1; ; ++n) {
+        long long max_dmg = 0;
+       
+        for (long long a = 0; a <= n; ++a) {
+            long long c = n - a;
+            long long dmg = 0;
+            if (c >= a) {
+                dmg = a * (c + 1) - a * (a - 1) / 2;
+            } else {
+                
+                long long full_dmg = (c + 1) * (c + 2) / 2;
+                long long rest_attacks = a - (c + 1);
+                dmg = full_dmg + rest_attacks * 1;
+            }
+            if (dmg > max_dmg) {
+                max_dmg = dmg;
+            }
+        }
+        
+        if (max_dmg >= x) {
+            cout << n << "\n";
+            break;
+        }
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
